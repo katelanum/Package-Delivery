@@ -1,5 +1,5 @@
 class Package:
-    def __init__(self, id, inputAddress, inputCity, inputState, inputZip, inputDeadline, inputMass):
+    def __init__(self, id, inputAddress, inputCity, inputState, inputZip, inputDeadline, inputMass, inputNotes):
         packageId = id
         address = inputAddress
         city = inputCity
@@ -7,3 +7,4 @@ class Package:
         zip = inputZip
         deadline = inputDeadline
         mass = inputMass
+        notes = inputNotes

@@ -1,11 +1,42 @@
 # Kate/Katherine Lanum
 # Student Id:
 
-# Take in the package data and put that information in Package objects
+import csv
 
-# Take package objects and populate HashTable
 
-# Create adjacency list of nodes
+from Package import Package
+from PackageHashTable import PackageHashTable
+
+def main():
+    packageTable = PackageHashTable()
+
+    # Take in the package data and put that information in Package objects
+    with open('ModifiedPackageFile.csv', 'r') as file:
+        fileReader = csv.reader(file)
+        for row in fileReader:
+            id = row[0]
+            inputAddress = row[1]
+            inputCity = row[2]
+            inputState = row[3]
+            inputZip = row[4]
+            inputDeadline = row[5]
+            inputMass = row[6]
+            inputNotes = row[7]
+            tempPackage = Package(id, inputAddress, inputCity, inputState, inputZip, inputDeadline, inputMass, inputNotes)
+
+            # Take package objects and populate HashTable
+            packageTable.insert(row[0], tempPackage)
+
+    # Create adjacency list of addresses
+    addressCount = 27
+    distanceArray = [[None]*addressCount]*addressCount
+    rowCount = 0
+    with open('ModifiedDistanceTable.csv', 'r') as file:
+        fileReader = csv.reader(file)
+        for row in fileReader:
+            for i in range(addressCount):
+                distanceArray[rowCount][i] = row[i]
+            rowCount += 1
 
 # Dijkstra's
 # Create a set to keep track of nodes in shortest path tree
